@@ -8,6 +8,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
+import {
+  ErrorMessage,
+  Form,
+  InstructionTxt,
+  RegisterContainer,
+} from "./Form.styled";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -227,59 +233,3 @@ const Register = () => {
 };
 
 export default Register;
-
-const OffScreen = css`
-  position: absolute;
-  left: -9999px;
-`;
-
-const RegisterContainer = styled.section`
-  width: 100%;
-  max-width: 420px;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.4);
-`;
-
-const ErrorMessage = styled.p`
-  ${(p) =>
-    p.isError
-      ? css`
-          background-color: lightpink;
-          color: firebrick;
-          font-weight: bold;
-          padding: 0.5rem;
-          margin-bottom: 0.5rem;
-        `
-      : OffScreen}
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  flex-grow: 1;
-  padding-bottom: 1rem;
-`;
-
-const InstructionTxt = styled.p`
-  ${(p) =>
-    p.isVisible
-      ? css`
-          font-size: 0.75rem;
-          border-radius: 0.5rem;
-          background: #000;
-          color: #fff;
-          padding: 0.25rem;
-          position: relative;
-          bottom: -10px;
-        `
-      : OffScreen}
-
-  & > svg {
-    margin-right: 0.25rem;
-  }
-`;

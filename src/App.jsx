@@ -2,12 +2,14 @@ import React from "react";
 import Register from "./components/Register";
 import styled, { createGlobalStyle } from "styled-components";
 import { GlobalStyles } from "./globalStyles/GlobalStyles";
+import Login from "./components/Login";
 
 const App = () => {
   return (
     <StyledApp>
       <GlobalStyles />
-      <Register />
+      {/* <Register /> */}
+      <Login />
     </StyledApp>
   );
 };
