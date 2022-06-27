@@ -25,10 +25,12 @@ const App = () => {
         <Route path="unauthorized" element={<Unauthorized />} />
 
         {/* Protected Routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="editor" element={<Editor />} />
-        <Route path="admin" element={<Admin />} />
-        <Route path="lounge" element={<Lounge />} />
+        <Route element={<RequireAuth />}>
+          <Route path="/" element={<Home />} />
+          <Route path="editor" element={<Editor />} />
+          <Route path="admin" element={<Admin />} />
+          <Route path="lounge" element={<Lounge />} />
+        </Route>
 
         {/* 404 */}
 

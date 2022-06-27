@@ -1,6 +1,8 @@
-import { useRef, useState, useEffect, useContext } from "react";
+import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "../api/axios";
-import AuthContext from "../context/AuthProvider";
+import useAuth from "../hooks/useAuth";
+
 import {
   ErrorMessage,
   Form,
@@ -11,7 +13,7 @@ import {
 const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
-  const { auth, setAuth } = useContext(AuthContext);
+  const { setAuth, auth } = useAuth();
 
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
@@ -61,7 +63,7 @@ const Login = () => {
         <section>
           <h1>Success!</h1>
           <p>
-            <a href="#">Go to home</a>
+            <Link to="/">Go to home</Link>
           </p>
         </section>
       ) : (
@@ -102,7 +104,7 @@ const Login = () => {
             <br />
             <StyledSpan>
               {/*put router link here*/}
-              <a href="#">Sign Up</a>
+              <Link to="/register">Sign Up</Link>
             </StyledSpan>
           </p>
         </RegisterContainer>
