@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
 
@@ -11,10 +11,14 @@ import {
 } from "./Form.styled";
 
 const Login = () => {
-  const userRef = useRef();
-  const errRef = useRef();
   const { setAuth, auth } = useAuth();
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const userRef = useRef();
+  const errRef = useRef();
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -43,6 +47,7 @@ const Login = () => {
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
       setAuth({ user, pwd, roles, accessToken });
+      navigate(from, { replace: true });
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
