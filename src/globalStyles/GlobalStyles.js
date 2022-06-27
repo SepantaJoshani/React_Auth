@@ -50,6 +50,11 @@ button {
     color: red;
     margin-left: 0.25rem;
 }
-
+.flexGrow {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
 
 `;

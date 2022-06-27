@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import axios from "../api/axios";
-import { AuthContext } from "../context/AuthProvider";
+import AuthContext from "../context/AuthProvider";
 import {
   ErrorMessage,
   Form,

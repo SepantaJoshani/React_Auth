@@ -1,26 +1,41 @@
 import React from "react";
-import Register from "./components/Register";
-import styled, { createGlobalStyle } from "styled-components";
-import { GlobalStyles } from "./globalStyles/GlobalStyles";
-import Login from "./components/Login";
+import { Routes, Route } from "react-router-dom";
+import {
+  Layout,
+  LinkPage,
+  Login,
+  Lounge,
+  Admin,
+  Editor,
+  Home,
+  Missing,
+  Register,
+  RequireAuth,
+  Unauthorized,
+} from "./components";
 
 const App = () => {
   return (
-    <StyledApp>
-      <GlobalStyles />
-      {/* <Register /> */}
-      <Login />
-    </StyledApp>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        {/* Public Routes */}
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="linkpage" element={<LinkPage />} />
+        <Route path="unauthorized" element={<Unauthorized />} />
+
+        {/* Protected Routes */}
+        <Route path="/" element={<Home />} />
+        <Route path="editor" element={<Editor />} />
+        <Route path="admin" element={<Admin />} />
+        <Route path="lounge" element={<Lounge />} />
+
+        {/* 404 */}
+
+        <Route path="*" element={<Missing />} />
+      </Route>
+    </Routes>
   );
 };
 
 export default App;
-
-const StyledApp = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 1rem 0.5rem;
-`;
