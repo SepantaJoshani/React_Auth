@@ -58,3 +58,21 @@ export const InstructionTxt = styled.p`
 export const StyledSpan = styled.span`
   display: inline-block;
 `;
+
+export const PersistContainer = styled.div`
+  font-size: 0.75rem;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+
+  label {
+    margin: 0;
+  }
+
+  input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+    margin: 0 5px 2px 2px;
+  }
+`;

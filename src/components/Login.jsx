@@ -6,12 +6,13 @@ import useAuth from "../hooks/useAuth";
 import {
   ErrorMessage,
   Form,
+  PersistContainer,
   RegisterContainer,
   StyledSpan,
 } from "./Form.styled";
 
 const Login = () => {
-  const { setAuth, auth } = useAuth();
+  const { setAuth, persist, setPersist } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -62,6 +63,14 @@ const Login = () => {
     }
   };
 
+  const togglePersist = () => {
+    setPersist((prev) => !prev);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("persist", persist);
+  }, [persist]);
+
   return (
     <>
       {success ? (
@@ -103,6 +112,15 @@ const Login = () => {
             />
 
             <button>Sign In</button>
+            <PersistContainer>
+              <input
+                type="checkbox"
+                id="persist"
+                onChange={togglePersist}
+                checked={persist}
+              />
+              <label htmlFor="persist">Trust this device</label>
+            </PersistContainer>
           </Form>
           <p>
             Need an Account?
