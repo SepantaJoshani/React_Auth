@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "../api/axios";
+import useRefreshToken from "../hooks/useRefreshToken";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  //* if you create a button and trigger this refresh function it will give U a token
+  const refresh = useRefreshToken();
 
   useEffect(() => {
     let isMounted = true;
