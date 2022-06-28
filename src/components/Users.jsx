@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import axios from "../api/axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import useRefreshToken from "../hooks/useRefreshToken";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   //* if you create a button and trigger this refresh function it will give U a token
   const refresh = useRefreshToken();
 
@@ -14,7 +19,7 @@ const Users = () => {
 
     const getUsers = async () => {
       try {
-        const { data } = await axios.get("/users", {
+        const { data } = await axiosPrivate.get("/users", {
           signal,
         });
 
@@ -22,6 +27,7 @@ const Users = () => {
         isMounted && setUsers(data);
       } catch (error) {
         console.log(error);
+        navigate("/login", { state: { from: location }, replace: ture });
       }
     };
 
