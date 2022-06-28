@@ -9,17 +9,20 @@ const PersistLogin = () => {
   const { auth, persist } = useAuth();
 
   useEffect(() => {
+    let isMounted = true;
     const verifyRefreshToken = async () => {
       try {
         await refresh();
       } catch (error) {
         console.log(error);
       } finally {
-        setIsLoading(false);
+        isMounted && setIsLoading(false);
       }
     };
     !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false);
-    return () => {};
+
+    //* we dont want to update state when the component is unmounted
+    return () => (isMounted = false);
   }, []);
 
   useEffect(() => {}, [isLoading]);
