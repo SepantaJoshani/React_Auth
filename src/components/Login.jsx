@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 import {
   ErrorMessage,
@@ -20,7 +21,7 @@ const Login = () => {
 
   const userRef = useRef();
   const errRef = useRef();
-  const [user, setUser] = useState("");
+  const [user, setUser] = useLocalStorage("user", "");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -85,7 +86,7 @@ const Login = () => {
           <ErrorMessage ref={errRef} isError={errMsg} aria-live="assertive">
             {errMsg}
           </ErrorMessage>
-          <h1>Register</h1>
+          <h1>Login</h1>
           <Form onSubmit={handleSubmit}>
             <label htmlFor="username">Username:</label>
             {/*****  UserName ****/}
